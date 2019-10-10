@@ -22,6 +22,18 @@ const userTypeRouter = require("./routes/userTypeRoutes");
 
 const app = express();
 
+const DB =
+  "mongodb+srv://iamzeeali:globus2015@glcluster-4yhn2.mongodb.net/globusWTS?retryWrites=true";
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("MongoDB Connected"));
+
 // *********************GLOBAL MIDDLEWARES*******************************
 
 //set security http headers
@@ -79,6 +91,16 @@ app.use("/api/product", productRouter);
 app.use("/api/company-branch", companyBranchRouter);
 app.use("/api/employee", employeeRouter);
 app.use("/api/user-type", userTypeRouter);
+
+// Serve static assets in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.all("*", (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
