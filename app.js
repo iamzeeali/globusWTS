@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const morgan = require("morgan");
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
