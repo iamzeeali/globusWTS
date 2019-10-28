@@ -57,6 +57,7 @@ export default function(state = initialState, action) {
     //       );
     //     })
     //   };
+    
     case types.CLEAR_FILTER:
       return {
         ...state,

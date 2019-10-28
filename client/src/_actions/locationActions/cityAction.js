@@ -45,7 +45,7 @@ export const addCity = (formData, history) => async dispatch => {
     const res = await axios.post("/api/city", formData);
     dispatch({
       type: types.ADD_CITY,
-      payload: res.data.data
+      payload: res.data
     });
     history.push("/location/citymaster");
 

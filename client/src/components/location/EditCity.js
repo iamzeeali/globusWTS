@@ -59,8 +59,8 @@ const EditCity = ({
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Enter State"
-                      name="state"
+                      placeholder="Edit City"
+                      name="city"
                       value={formData.city}
                       onChange={e => onChangeHandler(e)}
                       required

@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
     case types.ADD_STATE:
       return {
         ...state,
-        city: payload,
+        state: payload,
         loading: false
       };
     case types.SET_CURRENT_STATE:

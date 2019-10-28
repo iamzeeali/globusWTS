@@ -4,8 +4,7 @@ const stateSchema = new mongoose.Schema({
   state: {
     type: String,
     unique: true,
-    required: [true, "There must be a state"],
-    uppercase: true
+    required: [true, "There must be a state"]
   },
   city: {
     type: mongoose.Schema.ObjectId,

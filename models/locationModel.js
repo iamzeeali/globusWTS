@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const locationSchema = new mongoose.Schema({
-  location: {
+  address: {
     type: String,
-    required: [true, "Please provide location details"],
-    unique: true
+    required: [true, "Please provide address details"]
   },
   pinCode: {
     type: Number,

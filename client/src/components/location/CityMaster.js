@@ -27,6 +27,8 @@ const CityMaster = ({
     deleteCity(id);
   };
 
+  const notAvailableError = <small className="text-danger">NA</small>;
+
   return (
     <Fragment>
       <div className="container-fluid mt-4">
@@ -63,7 +65,7 @@ const CityMaster = ({
               {cities.map(city => (
                 <tr key={city._id}>
                   <td>{city.city}</td>
-                  <td>{city.state.state}</td>
+                  <td>{!city.state ? notAvailableError : city.state.state}</td>
                   <td className="text-right">
                     <Link
                       to={`/editCity/${city._id}`}

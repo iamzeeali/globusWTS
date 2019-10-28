@@ -24,6 +24,7 @@ import EditCity from "./components/location/EditCity";
 
 import LocationMaster from "./components/location/LocationMaster";
 import AddLocation from "./components/location/AddLocation";
+import EditLocation from "./components/location/EditLocation";
 
 const App = () => {
   let routes = (
@@ -76,6 +77,13 @@ const App = () => {
           component={AddLocation}
         />
       </Switch>
+      <Switch>
+        <PrivateRoute
+          exact
+          path={`/editLocation/:id`}
+          component={EditLocation}
+        />
+      </Switch>
     </Fragment>
   );
 
@@ -84,7 +92,8 @@ const App = () => {
       <Router>
         <Fragment>
           <Alert />
-          <Sidebar>{routes}</Sidebar>
+          <Sidebar/>
+          {routes}
         </Fragment>
       </Router>
     </Provider>

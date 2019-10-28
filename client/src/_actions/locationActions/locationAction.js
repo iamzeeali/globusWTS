@@ -6,7 +6,7 @@ import * as types from "../types";
 export const getCurrentLocation = id => async dispatch => {
   try {
     const res = await axios.get(`/api/location/${id}`);
-    console.log(res.data);
+    // console.log(res.data);
 
     dispatch({
       type: types.GET_LOCATION,
@@ -30,7 +30,6 @@ export const getLocations = () => async dispatch => {
       payload: res.data.data
     });
   } catch (err) {
-    console.log(err);
     // dispatch({
     //   type: types.location_ERROR,
     //   payload: { msg: err.response.data, status: err.response.status }
@@ -45,7 +44,7 @@ export const addLocation = (formData, history) => async dispatch => {
     const res = await axios.post("/api/location", formData);
     dispatch({
       type: types.ADD_LOCATION,
-      payload: res.data.data
+      payload: res.data
     });
     history.push("/location/locationmaster");
 
@@ -53,10 +52,6 @@ export const addLocation = (formData, history) => async dispatch => {
   } catch (err) {
     const errors = err.response.data.error;
     console.log(errors);
-
-    if (errors.code === 11000) {
-      dispatch(setAlert("Location already exists!", "danger"));
-    }
 
     dispatch({
       type: types.LOCATION_ERROR,

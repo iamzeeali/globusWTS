@@ -41,12 +41,10 @@ export const getStates = () => async dispatch => {
 // Add state
 export const addState = (formData, history) => async dispatch => {
   try {
-    const res = await axios
-      .post("/api/state", formData)
-      .sort({ createdAt: -1 });
+    const res = await axios.post("/api/state", formData);
     dispatch({
       type: types.ADD_STATE,
-      payload: res.data.data
+      payload: res.data
     });
     history.push("/location/statemaster");
 

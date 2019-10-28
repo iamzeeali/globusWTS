@@ -29,6 +29,12 @@ const AddCity = ({ addCity, getStates, states, history }) => {
     addCity(formData, history);
   };
 
+  let options = states.map(state => (
+    <option key={state._id} value={state._id}>
+      {state.state}
+    </option>
+  ));
+
   return (
     <Fragment>
       <div className="container-fluid m-auto">
@@ -51,19 +57,12 @@ const AddCity = ({ addCity, getStates, states, history }) => {
                     <select
                       className="form-control"
                       name="state"
-                      // value={state}
+                      value={state}
+                      defaultValue={{ label: "Select Dept", value: 0 }}
                       onChange={e => onChangeHandler(e)}
-                      defaultValue={{ label: "Select Dept", value: state }}
                     >
-                      {states.map(state => (
-                        <option
-                          key={state._id}
-                          value={state._id}
-                          text={state.state}
-                        >
-                          {state.state}
-                        </option>
-                      ))}
+                      <option>Select State</option>
+                      {options}
                     </select>
                   </div>
                   <div className="form-group">

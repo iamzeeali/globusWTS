@@ -28,6 +28,8 @@ const LocationMaster = ({
     deleteLocation(id);
   };
 
+  const notAvailableError = <small className="text-danger">NA</small>;
+
   return (
     <Fragment>
       <div className="container-fluid mt-4">
@@ -65,13 +67,13 @@ const LocationMaster = ({
             <tbody>
               {locations.map(loc => (
                 <tr key={loc._id}>
-                  <td>{loc.location}</td>
+                  <td>{loc.address}</td>
                   <td>{loc.pinCode}</td>
-                  <td>{loc.city.city}</td>
-                  <td>{loc.state.state}</td>
+                  <td>{!loc.city ? notAvailableError : loc.city.city}</td>
+                  <td>{!loc.state ? notAvailableError : loc.state.state}</td>
                   <td className="text-right">
                     <Link
-                      to={`/editCity/${loc._id}`}
+                      to={`/editLocation/${loc._id}`}
                       onClick={() => setCurrentLocation(loc)}
                     >
                       <i className="far fa-edit fa-md mr-4"></i>

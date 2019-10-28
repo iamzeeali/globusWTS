@@ -33,7 +33,7 @@ export default function(state = initialState, action) {
     case types.SET_CURRENT_LOCATION:
       return {
         ...state,
-        location: action.payload
+        location: payload
       };
     case types.CLEAR_LOCATION:
       return {

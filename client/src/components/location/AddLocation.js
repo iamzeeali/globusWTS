@@ -22,7 +22,7 @@ const AddLocation = ({
   }, [getStates, getCities]);
 
   const [formData, setFormData] = useState({
-    location: "",
+    address: "",
     pinCode: "",
     state: "",
     city: ""
@@ -37,6 +37,18 @@ const AddLocation = ({
     e.preventDefault();
     addLocation(formData, history);
   };
+
+  let stateOptions = states.map(state => (
+    <option key={state._id} value={state._id}>
+      {state.state}
+    </option>
+  ));
+
+  let cityOptions = cities.map(city => (
+    <option key={city._id} value={city._id}>
+      {city.city}
+    </option>
+  ));
 
   return (
     <Fragment>
@@ -64,17 +76,8 @@ const AddLocation = ({
                       width={8}
                       onChange={e => onChangeHandler(e)}
                     >
-                      {states.map(state => (
-                        <option
-                          name={state.state}
-                          key={state._id}
-                          value={state._id}
-                          text={state.state}
-                          onChange={e => onChangeHandler(e)}
-                        >
-                          {state.state}
-                        </option>
-                      ))}
+                      <option>Select State</option>
+                      {stateOptions}
                     </select>
                   </div>
                   <div className="form-group">
@@ -86,17 +89,8 @@ const AddLocation = ({
                       selection
                       onChange={e => onChangeHandler(e)}
                     >
-                      {cities.map(city => (
-                        <option
-                          name={city.city}
-                          key={city._id}
-                          value={city._id}
-                          text={city.city}
-                          onChange={e => onChangeHandler(e)}
-                        >
-                          {city.city}
-                        </option>
-                      ))}
+                      <option>Select City</option>
+                      {cityOptions}
                     </select>
                   </div>
                   <div className="form-group">
@@ -104,8 +98,8 @@ const AddLocation = ({
                       type="text"
                       className="form-control"
                       placeholder="Enter Location"
-                      name="location"
-                      value={formData.location}
+                      name="address"
+                      value={formData.address}
                       onChange={e => onChangeHandler(e)}
                       required
                     />
